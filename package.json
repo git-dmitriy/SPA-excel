@@ -1,0 +1,28 @@
+{
+  "name": "spa-excel",
+  "version": "1.0.0",
+  "description": "Pure JavaScript application",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/git-dmitriy/SPA-excel.git"
+  },
+  "keywords": [
+    "js",
+    "javascript",
+    "excel"
+  ],
+  "author": "Dmitriy Shalberkin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/git-dmitriy/SPA-excel/issues"
+  },
+  "homepage": "https://github.com/git-dmitriy/SPA-excel#readme",
+  "devDependencies": {
+    "webpack": "^5.4.0",
+    "webpack-cli": "^4.2.0"
+  }
+}
