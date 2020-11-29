@@ -1,0 +1,66 @@
+.table {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: $header-height + $toolbar-height + $formula-height;
+  overflow-x: auto;
+}
+
+.table__row {
+  display: flex;
+  min-height: 20px;
+  height: $row-height;
+}
+
+.table__row:last-child .table__row-info {
+  border-bottom: 1px solid $border-color;
+}
+.table__row:last-child {
+  padding-bottom: 2px;
+}
+
+.table__row-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: $info-cell-width;
+  height: 100%;
+  border: 1px solid $border-color;
+  border-top: none;
+  background-color: #f8f9fa;
+}
+
+.table__row-data {
+  display: flex;
+}
+
+.table__column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f9fa;
+  min-width: 40px;
+  width: $cell-width;
+  border: 1px solid $border-color;
+  border-top: none;
+  border-left: none;
+  height: 100%;
+}
+
+.table__cell {
+  min-width: 40px;
+  padding: 5px;
+  width: $cell-width;
+  height: 100%;
+  border-bottom: 1px solid #e2e3e3;
+  border-right: 1px solid #e2e3e3;
+  color: #111;
+  white-space: nowrap;
+  outline: none;
+}
+
+.table__cell_selected {
+  border: none;
+  outline: 2px solid #3c74ff;
+  z-index: 2;
+}
