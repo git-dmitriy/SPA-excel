@@ -3,6 +3,7 @@
   left: 0;
   right: 0;
   top: $header-height + $toolbar-height;
+  height: $formula-height;
   display: flex;
   align-items: center;
   border-bottom: 1px solid $border-color;
@@ -13,7 +14,6 @@
   text-align: center;
   border-right: 1px solid $border-color;
   min-width: $info-cell-width;
-  padding: 2px 10px;
 }
 .formula__input {
   padding: 4px;
