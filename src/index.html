@@ -7,6 +7,8 @@
   <title>Pure JavaScript Excel</title>
   <link rel="shortcut icon" href="favicon.ico">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+
 </head>
 
 <body>
@@ -39,7 +41,6 @@
             format_underline</span>
         </div>
 
-
         <div class="toolbar__button">
           <span class="material-icons">
             format_align_left</span>
@@ -58,7 +59,10 @@
         </div>
 
       </div>
-      <div class="formula"></div>
+      <div class="formula">
+        <div class="formula__info">fx</div>
+        <div class="formula__input" contenteditable spellcheck="false"></div>
+      </div>
       <div class="table"></div>
     </div>
   </div>
