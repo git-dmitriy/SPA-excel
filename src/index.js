@@ -1,7 +1,7 @@
-import "./module";
-// import "normalize.css";
+import { Excel } from "@/components/Excel/Excel";
 import "./scss/index.scss";
 
-console.log("hello");
-
-console.log("another branch!");
+const excel = new Excel("#app", {
+  components: [],
+});
+console.log("Excel:", excel);
