@@ -11,7 +11,6 @@ export class ExcelComponent extends DomListener {
   }
 
   init() {
-    this.initDOMListener();
-    this.component.forEach((component) => component.init());
+    this.initDOMListeners();
   }
 }
