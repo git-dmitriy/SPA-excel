@@ -9,25 +9,19 @@ export class Excel {
   getRoot() {
     const $root = $.create("div", "excel");
 
-    this.components.forEach((Component) => {
-      // const $el = document.createElement("div");
-      // $el.classList.add(Component.className);
-
+    this.component = this.components.map((Component) => {
       const $el = $.create("div", Component.className);
-
       const component = new Component($el);
-      // $el.innerHTML = component.toHTML();
-      // debugger;
       $el.html(component.toHTML());
-
       $root.append($el);
+      return component;
     });
 
     return $root;
   }
 
   render() {
-    // this.$el.insertAdjacentHTML("afterbegin", `<h1>Test</h1>`);
     this.$el.append(this.getRoot());
+    console.log(this.component);
   }
 }
