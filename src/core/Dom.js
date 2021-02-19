@@ -25,9 +25,9 @@ class Dom {
     }
 
     if (Element.prototype.append) {
-      this.$el.append(node.$el);
+      this.$el.append(node);
     } else {
-      this.$el.appendChild(node.$el);
+      this.$el.appendChild(node);
     }
     return this;
   }
