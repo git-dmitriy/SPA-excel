@@ -11,7 +11,8 @@
     "quotes": 0,
     "linebreak-style": 0,
     "require-jsdoc": 0,
-    "operator-linebreak": "off"
+    "operator-linebreak": "off",
+    "indent": [2, 2]
   },
   "extends": ["eslint:recommended", "google"]
 }
