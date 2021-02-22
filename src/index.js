@@ -1,7 +1,11 @@
-import "./module";
-// import "normalize.css";
+import { Excel } from "@/components/Excel/Excel";
+import { Formula } from "./components/formula/Formula";
+import { Header } from "./components/Header/Header";
+import { Table } from "./components/table/Table";
+import { Toolbar } from "./components/toolbar/Toolbar";
 import "./scss/index.scss";
 
-console.log("hello");
-
-console.log("another branch!");
+const excel = new Excel("#app", {
+  components: [Header, Toolbar, Formula, Table],
+});
+excel.render();
