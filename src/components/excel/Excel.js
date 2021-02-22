@@ -15,9 +15,11 @@ export class Excel {
 
       // * DEBUG
 
-      if (component.name) {
-        window["c" + component.name] = component;
-      }
+      // if (component.name) {
+      //   window["c" + component.name] = component;
+      // }
+      // * --------------------
+
       $el.html(component.toHTML());
       $root.append($el);
       return component;
