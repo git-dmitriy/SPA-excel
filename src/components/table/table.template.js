@@ -9,29 +9,30 @@ function toColumn(col) {
   `;
 }
 
-function createRow(content) {
+function createRow(index, content) {
   return `
     <div class="table__row">
-    <div class="table__row-info"></div>
-    <div class="table__row-data">${content}</div>
+      <div class="table__row-info">${index ? index: ''}</div>
+      <div class="table__row-data">${content}</div>
     </div>
   `;
 }
 
-function createCell() {
+function toCell() {
   return `
-    <div class="table__cell" contenteditable>B1</div>
+    <div class="table__cell" contenteditable></div>
   `;
 }
 
-console.log(createCell, createRow, toColumn);
+console.log(toCell, createRow, toColumn);
 
-function toChar(_, idx) {
-  return String.fromCharCode(CODES.A + idx);
+function toChar(_, index) {
+  return String.fromCharCode(CODES.A + index);
 }
 
 export function createTable(rowsCount = 15) {
   const colsCount = CODES.Z - CODES.A + 1;
+
   console.log(colsCount);
 
   const rows = [];
@@ -44,10 +45,15 @@ export function createTable(rowsCount = 15) {
 
   console.log(cols);
 
-  rows.push(createRow(cols));
+  rows.push(createRow(null, cols));
 
   for (let i = 0; i < rowsCount; i++) {
-    rows.push(createRow());
+    const cells = new Array(colsCount)
+      .fill("")
+      .map(toCell)
+      .join("");
+
+    rows.push(createRow(i + 1, cells));
   }
 
   return rows.join("");
