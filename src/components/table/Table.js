@@ -23,8 +23,7 @@ export class Table extends ExcelComponent {
 
       const $parent = $resizer.closest('[data-type="resizable"]');
       const coords = $parent.getCoords();
-
-      // console.log("data-col:", $parent.data.col);
+      const cells = this.$root.findAll(`[data-col="${$parent.data.col}"]`);
 
       document.onmousemove = (e) => {
         console.log("mousemove");
@@ -32,11 +31,7 @@ export class Table extends ExcelComponent {
         const value = coords.width + delta;
         $parent.$el.style.width = value + "px";
 
-        document
-          .querySelectorAll(`[data-col="${$parent.data.col}"]`)
-          .forEach((el) => (el.style.width = value + "px"));
-
-        // console.log(delta);
+        cells.forEach((el) => (el.style.width = value + "px"));
       };
 
       document.onmouseup = () => {
@@ -48,3 +43,8 @@ export class Table extends ExcelComponent {
     }
   }
 }
+
+//             612 ms  Scripting
+// !            2781 ms  Rendering
+//             511 ms  Painting
+//             629 ms  System
