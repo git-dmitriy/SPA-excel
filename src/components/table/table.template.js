@@ -5,14 +5,21 @@ const CODES = {
 
 function toColumn(col) {
   return `
-    <div class="table__column">${col}</div>
+    <div class="table__column">
+      ${col}
+      <div class="table__column-resize"></div>
+    </div>
   `;
 }
 
 function createRow(index, content) {
+  const resize = index ? '<div class="table__row-resize"></div>' : '';
   return `
     <div class="table__row">
-      <div class="table__row-info">${index ? index: ''}</div>
+      <div class="table__row-info">
+        ${index ? index: ''}
+        ${resize}
+      </div>
       <div class="table__row-data">${content}</div>
     </div>
   `;
@@ -24,7 +31,7 @@ function toCell() {
   `;
 }
 
-console.log(toCell, createRow, toColumn);
+// console.log(toCell, createRow, toColumn);
 
 function toChar(_, index) {
   return String.fromCharCode(CODES.A + index);
@@ -33,7 +40,7 @@ function toChar(_, index) {
 export function createTable(rowsCount = 15) {
   const colsCount = CODES.Z - CODES.A + 1;
 
-  console.log(colsCount);
+  // console.log(colsCount);
 
   const rows = [];
 
@@ -43,7 +50,7 @@ export function createTable(rowsCount = 15) {
     .map(toColumn)
     .join("");
 
-  console.log(cols);
+  // console.log(cols);
 
   rows.push(createRow(null, cols));
 

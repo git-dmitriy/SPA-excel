@@ -20,6 +20,7 @@
 }
 
 .table__row-info {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,6 +36,7 @@
 }
 
 .table__column {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -45,6 +47,37 @@
   border-top: none;
   border-left: none;
   height: 100%;
+}
+
+.table__column-resize,
+.table__row-resize {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: $primary-color;
+  opacity: 0;
+  transition: 0.3s opacity;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.table__column-resize {
+  top: 0;
+  width: 2px;
+
+  &:hover {
+    cursor: col-resize;
+  }
+}
+
+.table__row-resize {
+  left: 0;
+  height: 2px;
+  &:hover {
+    cursor: row-resize;
+  }
 }
 
 .table__cell {
@@ -61,6 +94,6 @@
 
 .table__cell_selected {
   border: none;
-  outline: 2px solid #3c74ff;
+  outline: 2px solid $primary-color;
   z-index: 2;
 }
