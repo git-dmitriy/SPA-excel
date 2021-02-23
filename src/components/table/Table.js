@@ -25,13 +25,22 @@ export class Table extends ExcelComponent {
       const coords = $parent.getCoords();
       const cells = this.$root.findAll(`[data-col="${$parent.data.col}"]`);
 
-      document.onmousemove = (e) => {
-        console.log("mousemove");
-        const delta = Math.floor(e.pageX - coords.right);
-        const value = coords.width + delta;
-        $parent.$el.style.width = value + "px";
+      const type = $resizer.data.resize;
+      console.log("resize type:", type);
 
-        cells.forEach((el) => (el.style.width = value + "px"));
+      document.onmousemove = (e) => {
+        if (type === "col") {
+          console.log("mousemove");
+          const delta = Math.floor(e.pageX - coords.right);
+          const value = coords.width + delta;
+          $parent.$el.style.width = value + "px";
+          cells.forEach((el) => (el.style.width = value + "px"));
+        } else {
+          const delta = Math.floor(e.pageY - coords.bottom);
+          console.log("delta row:", delta);
+          const value = coords.height + delta;
+          $parent.$el.style.height = value + 'px';
+        }
       };
 
       document.onmouseup = () => {
