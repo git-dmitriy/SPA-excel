@@ -24,14 +24,19 @@ export class Table extends ExcelComponent {
       const $parent = $resizer.closest('[data-type="resizable"]');
       const coords = $parent.getCoords();
 
-      console.log(coords);
+      // console.log("data-col:", $parent.data.col);
 
       document.onmousemove = (e) => {
+        console.log("mousemove");
         const delta = Math.floor(e.pageX - coords.right);
         const value = coords.width + delta;
         $parent.$el.style.width = value + "px";
 
-        console.log(delta);
+        document
+          .querySelectorAll(`[data-col="${$parent.data.col}"]`)
+          .forEach((el) => (el.style.width = value + "px"));
+
+        // console.log(delta);
       };
 
       document.onmouseup = () => {
