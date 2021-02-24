@@ -4,6 +4,7 @@
   right: 0;
   top: $header-height + $toolbar-height + $formula-height;
   overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .table__row {
@@ -20,6 +21,7 @@
 }
 
 .table__row-info {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,6 +30,7 @@
   border: 1px solid $border-color;
   border-top: none;
   background-color: #f8f9fa;
+  user-select: none;
 }
 
 .table__row-data {
@@ -35,6 +38,7 @@
 }
 
 .table__column {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -45,6 +49,46 @@
   border-top: none;
   border-left: none;
   height: 100%;
+  user-select: none;
+}
+
+.table__column-resize,
+.table__row-resize {
+  position: absolute;
+  background-color: $primary-color;
+  transition: 0.3s opacity;
+  opacity: 0;
+  z-index: 1000;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &:active {
+    opacity: 0.7;
+  }
+}
+
+.table__column-resize {
+  right: -3px;
+  top: 0;
+  width: 5px;
+  bottom: 0;
+
+  &:hover {
+    cursor: col-resize;
+  }
+}
+
+.table__row-resize {
+  left: 0;
+  right: 0;
+  height: 5px;
+  bottom: -3px;
+
+  &:hover {
+    cursor: row-resize;
+  }
 }
 
 .table__cell {
@@ -55,12 +99,11 @@
   border-bottom: 1px solid #e2e3e3;
   border-right: 1px solid #e2e3e3;
   color: #111;
-  white-space: nowrap;
   outline: none;
 }
 
 .table__cell_selected {
   border: none;
-  outline: 2px solid #3c74ff;
+  outline: 2px solid $primary-color;
   z-index: 2;
 }
