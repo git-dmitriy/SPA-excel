@@ -55,16 +55,18 @@ function createRow(index, content, state) {
 
 function toCell(state, row) {
   return function(_, col) {
-    const width = getWidth(state, col);
+    const width = getWidth(state.colState, col);
+    const id = `${row}:${col}`;
+    const data = state.dataState[id];
     return `
     <div 
       class="table__cell" 
       contenteditable 
       data-col="${col}"
       data-type="cell"
-      data-id="${row}:${col}"
+      data-id="${id}"
       style="width:${width}"
-    ></div>
+    >${data || ''}</div>
     `;
   };
 }
@@ -102,7 +104,7 @@ export function createTable(rowsCount = 15, state = {}) {
     const cells = new Array(colsCount)
       .fill("")
       // .map((_, col) => toCell(row, col))
-      .map(toCell(state.colState, row))
+      .map(toCell(state, row))
       .join("");
 
     rows.push(createRow(row + 1, cells, state.rowState));
