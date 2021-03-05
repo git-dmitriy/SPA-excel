@@ -1,4 +1,5 @@
 import { range } from "../components/table/table.functions";
+import { defaultStyles } from "../constants";
 
 export function capitalize(string) {
   if (typeof string !== "string") {
@@ -35,4 +36,10 @@ export function isEqual(a, b) {
 
 export function camelToDash(str) {
   return str.replace(/([A-Z])/g, (g) => `-${g[0].toLowerCase()}`);
+}
+
+export function toInlineStyles(styles = {}) {
+  return Object.keys(defaultStyles)
+    .map((key) => `${camelToDash(key)}:${styles[key]}`)
+    .join(";");
 }
