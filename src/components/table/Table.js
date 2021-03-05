@@ -6,6 +6,7 @@ import { isCell, shouldResize, nextSelector } from "./table.functions";
 import { createTable } from "./table.template";
 import { TableSelection } from "./TableSelection";
 import * as actions from "../../redux/actions";
+import { defaultStyles } from "../../constants";
 
 export class Table extends ExcelComponent {
   static className = "table";
@@ -40,14 +41,16 @@ export class Table extends ExcelComponent {
       this.selection.current.focus();
     });
 
-    // this.$subscribe((state) => {
-    //   console.log("Table state:", state);
-    // });
+    this.$on("toolbar:applyStyle", (style) => {
+      console.log("table style:", style);
+      this.selection.applyStyle(style);
+    });
   }
 
   selectCell($cell) {
     this.selection.select($cell);
     this.$emit("table:select", $cell);
+    console.log($cell.getStyles(Object.keys(defaultStyles)));
   }
 
   async resizeTable(event) {
