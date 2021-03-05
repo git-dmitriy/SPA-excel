@@ -1,3 +1,6 @@
+import { defaultStyles } from "../../constants";
+import { camelToDash } from '../../core/utilities';
+
 const CODES = {
   A: 65,
   Z: 90,
@@ -16,16 +19,16 @@ function getHeight(state, index) {
 
 function toColumn({ col, index, width }) {
   return `
-    <div 
-      class="table__column" 
-      data-type="resizable" 
-      data-col="${index}" 
+    <div
+      class="table__column"
+      data-type="resizable"
+      data-col="${index}"
       style="width:${width}"
     >
       ${col}
-      <div 
-        class="table__column-resize" 
-        data-resize="col" 
+      <div
+        class="table__column-resize"
+        data-resize="col"
       ></div>
     </div>
   `;
@@ -38,11 +41,11 @@ function createRow(index, content, state) {
   const resizable = index ? 'data-type="resizable"' : "";
   const height = getHeight(state, index);
   return `
-    <div 
-      class="table__row" 
+    <div
+      class="table__row"
       data-row="${index}"
       ${resizable}
-      style="height:${height}" 
+      style="height:${height}"
     >
       <div class="table__row-info">
         ${index ? index : ""}
@@ -58,15 +61,19 @@ function toCell(state, row) {
     const width = getWidth(state.colState, col);
     const id = `${row}:${col}`;
     const data = state.dataState[id];
+    // 'font-weight: bold;'
+    const styles = Object.keys(defaultStyles)
+      .map((key) => `${camelToDash(key)}:${defaultStyles[key]}`)
+      .join(';');
     return `
-    <div 
-      class="table__cell" 
-      contenteditable 
+    <div
+      class="table__cell"
+      contenteditable
       data-col="${col}"
       data-type="cell"
       data-id="${id}"
-      style="width:${width}"
-    >${data || ''}</div>
+      style="${styles}; width:${width}"
+    >${data || ""}</div>
     `;
   };
 }
@@ -74,7 +81,6 @@ function toCell(state, row) {
 function toChar(_, index) {
   return String.fromCharCode(CODES.A + index);
 }
-
 
 function withWidthFrom(state) {
   return function(col, index) {
