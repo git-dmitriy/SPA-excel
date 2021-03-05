@@ -1,3 +1,4 @@
+import { defaultStyles } from "../../constants";
 import { toInlineStyles } from "../../core/utilities";
 
 const CODES = {
@@ -61,7 +62,10 @@ function toCell(state, row) {
     const id = `${row}:${col}`;
     const data = state.dataState[id];
     // 'font-weight: bold;'
-    const styles = toInlineStyles(state.stylesState[id]);
+    const styles = toInlineStyles({
+      ...defaultStyles,
+      ...state.stylesState[id],
+    });
     return `
     <div
       class="table__cell"
