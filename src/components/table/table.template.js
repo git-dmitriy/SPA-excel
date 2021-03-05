@@ -1,5 +1,4 @@
-import { defaultStyles } from "../../constants";
-import { camelToDash } from '../../core/utilities';
+import { toInlineStyles } from "../../core/utilities";
 
 const CODES = {
   A: 65,
@@ -62,9 +61,7 @@ function toCell(state, row) {
     const id = `${row}:${col}`;
     const data = state.dataState[id];
     // 'font-weight: bold;'
-    const styles = Object.keys(defaultStyles)
-      .map((key) => `${camelToDash(key)}:${defaultStyles[key]}`)
-      .join(';');
+    const styles = toInlineStyles(state.stylesState[id]);
     return `
     <div
       class="table__cell"
