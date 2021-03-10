@@ -1,50 +1,45 @@
-import { ExcelComponent } from "../../core/ExcelComponent";
+import { ExcelStateComponent } from "../../core/ExcelStateComponent";
+import { createToolbar } from "./toolbar.template";
+import { $ } from "../../core/Dom";
+import { defaultStyles } from "../../constants";
 
-export class Toolbar extends ExcelComponent {
+export class Toolbar extends ExcelStateComponent {
   static className = "toolbar";
 
   constructor($root, options) {
     super($root, {
       name: "Toolbar",
       listeners: ["click"],
+      subscribe: ["currentStyles"],
       ...options,
     });
   }
 
-  toHTML() {
-    return `
-      <div class="toolbar__button">
-        <span class="material-icons">
-          format_bold</span>
-      </div>
-      <div class="toolbar__button">
-        <span class="material-icons">
-          format_italic</span>
-      </div>
-      <div class="toolbar__button">
-        <span class="material-icons">
-          format_underline</span>
-      </div>
+  storeChanged(changes) {
+    this.setState(changes.currentStyles);
+    console.log("storeChanged", changes);
+  }
 
-      <div class="toolbar__button">
-        <span class="material-icons">
-          format_align_left</span>
-      </div>
-      <div class="toolbar__button">
-        <span class="material-icons">
-          format_align_center</span>
-      </div>
-      <div class="toolbar__button">
-        <span class="material-icons">
-          format_align_right</span>
-      </div>
-      <div class="toolbar__button">
-        <span class="material-icons">
-          format_align_justify</span>
-      </div>`;
+  prepare() {
+    this.initState(defaultStyles);
+  }
+
+  get template() {
+    return createToolbar(this.state);
+  }
+
+  toHTML() {
+    return this.template;
   }
 
   onClick(event) {
-    console.log("Toolbar element:\n", event.target);
+    const $target = $(event.target);
+    if ($target.data.type === "button") {
+      const value = JSON.parse($target.data.value);
+      this.$emit("toolbar:applyStyle", value);
+
+      // const key = Object.keys(value)[0];
+      // this.setState({ [key]: value[key] });
+    }
   }
 }
