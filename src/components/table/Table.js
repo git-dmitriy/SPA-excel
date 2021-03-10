@@ -1,5 +1,6 @@
 import { ExcelComponent } from "../../core/ExcelComponent";
 import { $ } from "../../core/Dom";
+import { parse } from "../../core/parse";
 import { matrix } from "../../core/utilities";
 import { resizeHandler } from "./tableResize";
 import { isCell, shouldResize, nextSelector } from "./table.functions";
@@ -32,9 +33,11 @@ export class Table extends ExcelComponent {
 
     const $cell = this.$root.find('[data-id="0:0"');
     this.selectCell($cell);
-    this.$on("formula:input", (text) => {
-      this.selection.current.text(text);
-      this.updateTextInStore(text);
+    this.$on("formula:input", (value) => {
+      this.selection.current
+        .attr("data-value", value)
+        .text(parse(value));
+      this.updateTextInStore(value);
     });
 
     this.$on("formula:done", () => {
