@@ -12,6 +12,7 @@ import { rootReducer } from "../redux/rootReducer";
 
 export class ExcelPage extends Page {
   getRoot() {
+    console.log("params:", this.params);
     const store = createStore(rootReducer, initialState);
 
     const stateListener = debounce((state) => {
