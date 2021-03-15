@@ -1,7 +1,11 @@
-export function toHTML() {
+import { storage } from "../core/utilities";
+
+export function toHTML(key) {
+  const model = storage(key);
+  const id = key.split(":");
   return `
     <li class="recent__record">
-      <a class="recent__link" href="#">Таблица номер 1</a>
+      <a class="recent__link" href="#excel${id}">${model.title}</a>
       <strong>29.11.2020</strong>
     </li>
   `;
