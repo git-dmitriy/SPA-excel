@@ -6,7 +6,10 @@ export function toHTML(key) {
   return `
     <li class="recent__record">
       <a class="recent__link" href="#excel${id}">${model.title}</a>
-      <strong>29.11.2020</strong>
+      <strong>
+        ${new Date(model.openedDate).toLocaleDateString()}
+        ${new Date(model.openedDate).toLocaleTimeString()}
+      </strong>
     </li>
   `;
 }
