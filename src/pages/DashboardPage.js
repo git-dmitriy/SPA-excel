@@ -15,8 +15,8 @@ export class DashboardPage extends Page {
         <a href="#excel/${now}" class="new__link">Новая таблица</a>
       </div>
     </div>
-      ${createRecordsTable()}
     <div class="recent container">
+      ${createRecordsTable()}
 
     </div>
     `);

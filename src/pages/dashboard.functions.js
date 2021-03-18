@@ -2,10 +2,10 @@ import { storage } from "../core/utilities";
 
 export function toHTML(key) {
   const model = storage(key);
-  const id = key.split(":");
+  const id = key.split(":")[1];
   return `
     <li class="recent__record">
-      <a class="recent__link" href="#excel${id}">${model.title}</a>
+      <a class="recent__link" href="#excel/${id}">${model.title}</a>
       <strong>
         ${new Date(model.openedDate).toLocaleDateString()}
         ${new Date(model.openedDate).toLocaleTimeString()}
