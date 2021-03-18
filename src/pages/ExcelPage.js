@@ -14,14 +14,12 @@ function storageName(param) {
 }
 export class ExcelPage extends Page {
   getRoot() {
-    console.log("params:", this.params);
     const params = this.params ? this.params : Date.now().toString();
 
     const state = storage(storageName(params));
     const store = createStore(rootReducer, normalizeInitialState(state));
 
     const stateListener = debounce((state) => {
-      console.log("App state:", state);
       storage(storageName(params), state);
     }, 300);
 
@@ -35,7 +33,6 @@ export class ExcelPage extends Page {
   }
 
   afterRender() {
-    console.log("after render");
     this.excel.init();
   }
 
